@@ -1,0 +1,62 @@
+CREATE database diana_homework;
+show databases;
+use diana_homework;
+use diana_homework;
+CREATE table films(
+	id int not null auto_increment primary key,
+	filmname varchar(255) not null default "filmname",
+	genre varchar(255) default null
+	);
+show tables;
+desc films;
+show create table films;
+alter table films add column release_year int not null default 2010;
+
+create table test;
+drop table test;
+select user(), current_user();
+
+INSERT INTO films SET filmname = "Titanic";
+INSERT INTO films (filmname) select filmname from films;
+DELETE from films WHERE id = 1;
+DELETE from films;
+INSERT INTO films (filmname, genre, release year) values
+	("Terminator 2", "action", 1991),
+	("Forrest Gump", "drama", 1994),
+	("Home alone", "comedy", 1990),
+	("The age of Adaline", "romantic melodrama", 2015),
+	("The Matrix", "fantasy", 1999),
+	("Titanic", "drama", 1997),
+	("Braveheart", "biography", 1995),
+	("The Intouchables", "drama", 2011),
+	("Dune", "adventure", 2021),
+	("Cruella", "family", 2021),
+	("Fast & Furious 9", "action", 2021);
+INSERT INTO films (filmname, release_year) values
+	("Interstellar", 2014);
+UPDATE films SET filmname = "Dear John", genre = "drama" WHERE id = 1;
+UPDATE films SET filmname = ""Sweet November", genre = "drama", release_year = 2001
+	WHERE mod(id, 2) = 0 and id < 4;
+SELECT * FROM films;
+SELECT filmname, genre, release_year FROM films;
+SELECT DISTINCT genre FROM films;
+SELECT filmname, genre, release_year FROM films WHERE length(filmname) < 8;
+SELECT filmname, genre, release_year FROM films GROUP BY 3;
+SELECT filmname, genre, release_year FROM films GROUP BY 2 ORDER BY 3 desc;
+SELECT filmname, genre, count (*), release_year FROM films GROUP BY 2;
+SELECT genre, count (*) FROM films GROUP BY 1 HAVING count(*) >1;
+SELECT filmname, genre, release_year FROM films GROUP BY 2 ORDER BY 3 limit 5;
+SELECT filmname, genre, release_year FROM films GROUP BY 2 ORDER BY 3 limit 3, 5;
+
+CREATE table color1 (
+	id int not null auto_increment primary key,
+	colorname varchar(255) default null
+	);
+INSERT INTO color1 (colorname) values
+	("red"),
+	("green"),
+	("blue");
+DELETE FROM color1;
+INSERT INTO color1 SET colorname = "black"; /*id = 4*/
+TRUNCATE table color1;
+INSERT INTO color1 SET colorname = "white"; /*id = 1*/
